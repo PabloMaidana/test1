@@ -69,6 +69,15 @@ public class Ordenamiento {
         }
     }
     
+    public void quickSort(){
+        int tam = datos.length;
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                
+            }
+        }
+    }
+    
     public void busquedaLineal(int n){
         int tam = datos.length;
         for (int i = 0; i < tam ; i++) {
@@ -77,6 +86,7 @@ public class Ordenamiento {
             }
         }
     }
+    
 //    system current time milis
 //    public void busquedaBinaria(int n){
 //        int tam = datos.length;
