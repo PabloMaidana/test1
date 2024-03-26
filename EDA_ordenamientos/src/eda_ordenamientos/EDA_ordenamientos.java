@@ -14,7 +14,11 @@ public class EDA_ordenamientos {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Ordenamiento ordenar = new Ordenamiento();
+        ordenar.carga();
+        ordenar.shellSort();
+        ordenar.muestra();
+//        ordenar.busquedaLineal(15);
     }
     
 }

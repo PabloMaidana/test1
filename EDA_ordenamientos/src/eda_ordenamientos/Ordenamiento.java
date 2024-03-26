@@ -9,11 +9,11 @@ package eda_ordenamientos;
  * @author usuario
  */
 public class Ordenamiento {
-    private int[] datos = new int [10000];
+    private int[] datos = new int [10];
     
      public void carga(){
         for (int i = 0; i < datos.length; i++) {
-            datos[i] = (int) (Math.random() * 10000);
+            datos[i] = (int) (Math.random() * 10);
         }
     }
     public void muestra(){
@@ -26,11 +26,11 @@ public class Ordenamiento {
         }
     }
     public void bubbleSort(){
-       int q = datos.length;
+       int tam = datos.length;
         boolean intercambio;
-        for (int i = 0; i < q - 1; i++) {
+        for (int i = 0; i < tam - 1; i++) {
             intercambio = false;
-            for (int j = 0; j < q - i - 1; j++) {
+            for (int j = 0; j < tam - i - 1; j++) {
                 if (datos[j] > datos[j + 1]) {
                     int aux = datos[j];
                     datos[j] = datos[j + 1];
@@ -43,22 +43,51 @@ public class Ordenamiento {
         }
     }
     public void insertionSort(){
-        int n = datos.length;
-        for (int i = 1; i < n; ++i) {
-            int key = datos[i];
+        int tam = datos.length;
+        for (int i = 1; i < tam; ++i) {
+            int elem = datos[i];
             int j = i - 1;
-
-            // Mover los elementos del arreglo arr[0..i-1] que son mayores que key
-            // a una posición adelante de su posición actual
-            while (j >= 0 && datos[j] > key) {
+            while (j >= 0 && datos[j] > elem) {
                 datos[j + 1] = datos[j];
                 j = j - 1;
             }
-            datos[j + 1] = key;
+            datos[j + 1] = elem;
         }
     }
+    
     public void shellSort(){
-        
+        int tam = datos.length;
+        for (int intervalo = tam / 2; intervalo > 0; intervalo /= 2) {
+            for (int i = intervalo; i < tam; i++) {
+                int elem = datos[i];
+                int j;
+                for (j = i; j >= intervalo && datos[j - intervalo] > elem; j -= intervalo) {
+                    datos[j] = datos[j - intervalo];
+                }
+                datos[j] = elem;
+            }
+        }
     }
+    
+    public void busquedaLineal(int n){
+        int tam = datos.length;
+        for (int i = 0; i < tam ; i++) {
+            if (datos[i] == n ) {
+                System.out.println("El numero " + n + " se encuentra en la posicion " + i);
+            }
+        }
+    }
+//    system current time milis
+//    public void busquedaBinaria(int n){
+//        int tam = datos.length;
+//        int i = tam / 2;
+//        boolean encontrado;
+//        while(datos[i] != n){
+//            if (datos) {
+//                
+//            }
+//        }
+//        
+//    }
     
 }
