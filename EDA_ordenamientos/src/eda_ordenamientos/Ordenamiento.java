@@ -4,16 +4,23 @@
  */
 package eda_ordenamientos;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  *
  * @author usuario
  */
 public class Ordenamiento {
-    private int[] datos = new int [10];
-    
+    private int[] datos = new int [10000];
+
+    public int[] getDatos() {
+        return datos;
+    }
+ 
      public void carga(){
         for (int i = 0; i < datos.length; i++) {
-            datos[i] = (int) (Math.random() * 10);
+            datos[i] = (int) (Math.random() * 10000);
         }
     }
     public void muestra(){
@@ -69,11 +76,59 @@ public class Ordenamiento {
         }
     }
     
-    public void quickSort(){
-        int tam = datos.length;
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                
+    public void quickSort(int izq,int der){
+        int pivote = datos[izq];
+        int i = izq;
+        int j = der;
+        int aux;
+        
+        while(i < j){
+            while (datos[i] <= pivote && i < j) i++; 
+            while (datos[j] > pivote) j--;
+            if (i < j) {
+                aux = datos[i];
+                datos[i] = datos[j];
+                datos[j] = aux;
+            }
+        }
+        datos[izq] = datos[j];
+        datos[j] = pivote;
+        
+        if (izq < j-1) {
+            quickSort(izq,j-1);
+        }
+        if (j+1 < der) {
+            quickSort(j+1,der);
+        }
+    }
+    
+    public void bucketSort(){
+        int n = datos.length;
+
+        // Creamos una lista de cubetas
+        ArrayList<Float>[] buckets = new ArrayList[n];
+
+        // Inicializamos cada cubeta como una lista vacía
+        for (int i = 0; i < n; i++) {
+            buckets[i] = new ArrayList<>();
+        }
+
+        // Agregamos cada elemento al cubeta correspondiente
+        for (int i = 0; i < n; i++) {
+            int bucketIndex = (int) (n * arr[i]);
+            buckets[bucketIndex].add(arr[i]);
+        }
+
+        // Ordenamos cada cubeta individualmente utilizando otro algoritmo (p.ej. Insertion Sort)
+        for (int i = 0; i < n; i++) {
+            Collections.sort(buckets[i]);
+        }
+
+        // Concatenamos los elementos ordenados de cada cubeta en el arreglo original
+        int index = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < buckets[i].size(); j++) {
+                datos[index++] = buckets[i].get(j);
             }
         }
     }

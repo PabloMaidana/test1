@@ -16,7 +16,7 @@ public class EDA_ordenamientos {
     public static void main(String[] args) {
         Ordenamiento ordenar = new Ordenamiento();
         ordenar.carga();
-        ordenar.shellSort();
+        ordenar.quickSort(0,ordenar.getDatos().length -1);
         ordenar.muestra();
 //        ordenar.busquedaLineal(15);
     }
